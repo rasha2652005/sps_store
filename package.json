@@ -1,0 +1,41 @@
+{
+  "name": "sps-store",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Smart Phone Store (SPS): customer website, admin panel and backend (Node.js + SQLite + React).",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "vite build",
+    "build:demo": "vite build --mode demo",
+    "start": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env server/index.js",
+    "create-admin": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env server/create-admin.js",
+    "test": "node --disable-warning=ExperimentalWarning --test tests/*.test.js",
+    "check:i18n": "node scripts/check-i18n.mjs"
+  },
+  "dependencies": {
+    "compression": "1.8.2",
+    "express": "5.3.0",
+    "helmet": "8.3.0"
+  },
+  "devDependencies": {
+    "@fontsource-variable/manrope": "5.3.0",
+    "@fontsource-variable/noto-kufi-arabic": "5.3.0",
+    "@fontsource/chakra-petch": "5.3.0",
+    "@fontsource/ibm-plex-sans-arabic": "5.3.0",
+    "@tailwindcss/vite": "4.3.3",
+    "@vitejs/plugin-react": "6.1.2",
+    "lucide-react": "1.57.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router": "7.18.4",
+    "sql.js": "1.14.2",
+    "tailwind-merge": "3.7.0",
+    "tailwindcss": "4.3.3",
+    "vite": "8.3.4",
+    "vite-plugin-singlefile": "2.3.3"
+  }
+}

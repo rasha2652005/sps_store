@@ -1,0 +1,26 @@
+# One-click setup on Render: render.com → New → Blueprint → pick this repository.
+#
+# Free plan: the server sleeps after 15 minutes without visitors and has no permanent disk, so the database and the
+# product photos are kept in a free Turso database (fill in TURSO_DATABASE_URL and TURSO_AUTH_TOKEN when asked).
+# To upgrade later (no sleeping, more bandwidth): Render dashboard → your service → Settings → Instance Type → Starter.
+# Nothing else changes; your data stays in Turso.
+services:
+  - type: web
+    name: smart-phone-store
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TURSO_DATABASE_URL
+        sync: false
+      - key: TURSO_AUTH_TOKEN
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false

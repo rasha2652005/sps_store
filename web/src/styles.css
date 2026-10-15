@@ -1,0 +1,272 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- SPS palette: ink, paper and silver (from the logo) ---------- */
+:root {
+  --bg: #f2f2f4;
+  --surface: #ffffff;
+  --surface-2: #f7f7f8;
+  --surface-3: #ececef;
+  --line: #e5e5ea;
+  --line-strong: #d2d2d9;
+  --ink: #0b0b0d;
+  --ink-2: #3a3a42;
+  --muted: #6c6c77;
+  --faint: #a2a2ab;
+  --inverse: #0b0b0d;
+  --on-inverse: #ffffff;
+  --hot: #ff4d2e;
+  --ok: #0f9d58;
+  --warn: #c77700;
+  --danger: #e11d48;
+  --info: #2563eb;
+  --silver-a: #fbfbfc;
+  --silver-b: #e4e4e8;
+  --shadow-rgb: 18 18 28;
+  color-scheme: light;
+}
+.dark {
+  --bg: #09090b;
+  --surface: #131316;
+  --surface-2: #18181c;
+  --surface-3: #212126;
+  --line: #25252b;
+  --line-strong: #34343c;
+  --ink: #f4f4f5;
+  --ink-2: #d4d4d8;
+  --muted: #a1a1aa;
+  --faint: #66666f;
+  --inverse: #f4f4f5;
+  --on-inverse: #0b0b0d;
+  --hot: #ff6347;
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --danger: #fb4570;
+  --info: #60a5fa;
+  --silver-a: #1d1d22;
+  --silver-b: #111114;
+  --shadow-rgb: 0 0 0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Manrope Variable', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Chakra Petch', 'Noto Kufi Arabic Variable', 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-inverse: var(--inverse);
+  --color-on-inverse: var(--on-inverse);
+  --color-hot: var(--hot);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-wa: #1fae55;
+}
+
+@theme {
+  --shadow-soft: 0 1px 2px rgb(var(--shadow-rgb) / 0.04), 0 4px 16px -4px rgb(var(--shadow-rgb) / 0.08);
+  --shadow-lift: 0 2px 6px rgb(var(--shadow-rgb) / 0.06), 0 18px 40px -12px rgb(var(--shadow-rgb) / 0.22);
+  --shadow-pop: 0 10px 30px -8px rgb(var(--shadow-rgb) / 0.35), 0 2px 8px rgb(var(--shadow-rgb) / 0.08);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-up: fade-up 0.5s var(--ease-out-expo) both;
+  --animate-fade-in: fade-in 0.3s ease-out both;
+  --animate-scale-in: scale-in 0.22s var(--ease-out-expo) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-bump: bump 0.45s var(--ease-out-expo);
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-ping-slow: ping-slow 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(-0.6deg); }
+  }
+  @keyframes bump {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 88px;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100dvh;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  img {
+    -webkit-user-drag: none;
+  }
+  input[type='number']::-webkit-inner-spin-button {
+    opacity: 0.5;
+  }
+  /* Arabic reads better a little larger and without negative tracking */
+  [dir='rtl'] .font-display {
+    letter-spacing: 0 !important;
+  }
+  [dir='rtl'] body {
+    font-size: 15.5px;
+  }
+}
+
+@layer components {
+  .wrap {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1360px;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1.25rem;
+  }
+  .silver {
+    background: linear-gradient(145deg, var(--silver-a), var(--silver-b));
+  }
+  /* Diagonal light panels taken from the logo background */
+  .panels {
+    background-image:
+      linear-gradient(116deg, transparent 0 46%, rgb(255 255 255 / 0.055) 46% 58%, transparent 58%),
+      linear-gradient(116deg, transparent 0 66%, rgb(255 255 255 / 0.035) 66% 70%, transparent 70%),
+      linear-gradient(116deg, transparent 0 24%, rgb(255 255 255 / 0.05) 24% 24.25%, transparent 24.25%);
+  }
+  .panels-light {
+    background-image:
+      linear-gradient(116deg, transparent 0 46%, rgb(0 0 0 / 0.028) 46% 58%, transparent 58%),
+      linear-gradient(116deg, transparent 0 66%, rgb(0 0 0 / 0.02) 66% 70%, transparent 70%);
+  }
+  .dark .panels-light {
+    background-image:
+      linear-gradient(116deg, transparent 0 46%, rgb(255 255 255 / 0.03) 46% 58%, transparent 58%),
+      linear-gradient(116deg, transparent 0 66%, rgb(255 255 255 / 0.02) 66% 70%, transparent 70%);
+  }
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface-3) 0%, var(--surface-2) 40%, var(--surface-3) 80%);
+    background-size: 200% 100%;
+    animation: var(--animate-shimmer);
+    border-radius: 0.75rem;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  [dir='rtl'] .eyebrow {
+    letter-spacing: 0;
+    font-size: 0.8rem;
+  }
+  /* Parallelogram tag, echoing the slanted bars of the SPS mark */
+  .slant {
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    padding-inline: 14px;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .link-underline {
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1.5px;
+    transition: background-size 0.25s var(--ease-out-expo);
+  }
+  .link-underline:hover {
+    background-size: 100% 1.5px;
+  }
+  .glass {
+    background: color-mix(in oklab, var(--surface) 78%, transparent);
+    backdrop-filter: saturate(1.6) blur(16px);
+    -webkit-backdrop-filter: saturate(1.6) blur(16px);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
